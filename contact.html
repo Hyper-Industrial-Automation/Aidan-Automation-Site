@@ -41,33 +41,44 @@
             This form is static HTML. You can replace it with a Netlify form, or simply list an email address for
             project requests.
           </p>
-          <form>
-            <div class="form-grid">
-              <div>
-                <label for="name">Name</label>
-                <input id="name" placeholder="Your name">
-              </div>
-              <div>
-                <label for="company">Company (optional)</label>
-                <input id="company" placeholder="Company name">
-              </div>
-              <div>
-                <label for="email">Email</label>
-                <input id="email" placeholder="you@example.com">
-              </div>
-              <div>
-                <label for="reference">Machine / line reference</label>
-                <input id="reference" placeholder="Machine or area (if known)">
-              </div>
-              <div class="full">
-                <label for="message">Project / issue description</label>
-                <textarea id="message" placeholder="Short description of the machine, problem, and desired change."></textarea>
-              </div>
-              <div class="full">
-                <button type="button" class="btn-primary"><span class="icon">📤</span><span>Not wired up yet</span></button>
-              </div>
-            </div>
-          </form>
+          <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+  <!-- Hidden field required by Netlify -->
+  <input type="hidden" name="form-name" value="contact">
+  <!-- Honeypot field (spam trap) -->
+  <p style="display:none;">
+    <label>Don’t fill this out if you’re human: <input name="bot-field"></label>
+  </p>
+
+  <div class="form-grid">
+    <div>
+      <label for="name">Name</label>
+      <input id="name" name="name" placeholder="Your name" required>
+    </div>
+    <div>
+      <label for="company">Company (optional)</label>
+      <input id="company" name="company" placeholder="Company name">
+    </div>
+    <div>
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" placeholder="you@example.com" required>
+    </div>
+    <div>
+      <label for="reference">Machine / line reference</label>
+      <input id="reference" name="reference" placeholder="Machine or area (if known)">
+    </div>
+    <div class="full">
+      <label for="message">Project / issue description</label>
+      <textarea id="message" name="message" placeholder="Short description of the machine, problem, and desired change." required></textarea>
+    </div>
+    <div class="full">
+      <button type="submit" class="btn-primary">
+        <span class="icon">📤</span>
+        <span>Send message</span>
+      </button>
+    </div>
+  </div>
+</form>
+
         </div>
       </section>
     </main>
